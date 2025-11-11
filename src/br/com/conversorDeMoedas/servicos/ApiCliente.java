@@ -24,13 +24,18 @@ public class ApiCliente {
 
         try {
             HttpResponse<String> resposta = client
-                    //?
                     .send(requizicao, HttpResponse.BodyHandlers.ofString());
 
+            // Pegamos o corpo da resposta da API, passamos seus dados para a Classe Record Moeda.
+            //Ou seja, gson pega o JSON da resposta, "coloca ele em um objeto java" (assim podemo
+            // usar seus atributos, POO) e retorna esse objeto Moeda.
             return gson.fromJson(resposta.body(), Moeda.class);
         } catch (Exception e){
-            //?
+            //usamos 'throw new" para mostrar um erro de forma mais clara, ele para o código
             throw new RuntimeException("Erro ao buscar dados da API: " + e.getMessage(), e);
+            //RuntimeException é uma exceção genérica, ela informa que deu erro em tempo de execução.
+            //Mas que não faz sentido tratar, logo, apenas paramos o programa. É um alerta vermelho que algo aconteceu
+            // e que precisamos parar
         }
     }
 }

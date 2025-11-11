@@ -44,3 +44,7 @@ Os dados são obtidos via **API REST**, garantindo que as taxas de câmbio estej
 ## Exemplo de Uso
 <img width="424" height="396" alt="image" src="https://github.com/user-attachments/assets/e6f44729-33aa-48fc-b50e-2717df255726" />
 
+---
+
+### Observações:
+O código possui diversas anotações, coloquei isso com o intuito de facilitar a compreensão e a localização.

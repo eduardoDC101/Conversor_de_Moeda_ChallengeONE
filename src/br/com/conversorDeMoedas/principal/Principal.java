@@ -6,7 +6,6 @@ import br.com.conversorDeMoedas.modelos.TipoMoeda;
 import br.com.conversorDeMoedas.servicos.ApiCliente;
 import br.com.conversorDeMoedas.servicos.Conversor;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Principal {
@@ -30,9 +29,14 @@ public class Principal {
             System.out.println("Digite o valor a ser convertido: ");
             double valor = ler.nextDouble();
 
-            TipoMoeda base = null, destino = null;
 
+            //Com base na opção escolhida pelo usuário, o programa precisa descobrir qual a moeda base e a moeda destino
+            //Logo, se ele escolher 1, o programa sabe que é de Dólar para Peso Argentino
+
+            //Criamos 2 variáveis do tipo TipoMoeda que é um enum.
+            TipoMoeda base = null, destino = null;
             switch(opcao){
+                //Se for 1, ele atribui USD a Base e ARS ao Destino
                 case 1 -> {base = TipoMoeda.USD; destino = TipoMoeda.ARS;}
                 case 2 -> {base = TipoMoeda.ARS; destino = TipoMoeda.USD;}
                 case 3 -> {base = TipoMoeda.USD; destino = TipoMoeda.BRL;}
@@ -46,7 +50,12 @@ public class Principal {
             }
 
             try{
+                //Aqui chamamos a Classe ApiCliente para consultar a cotação
+                //base.name() retorna (se opcao for 1) "USD", passamos o "USD" como parametro para o métod0 de busca da classe ApiCliente
+                //O métod0 retorna um objeto moeda com todas com todas as taxas atuais. Retorno esse que está em "moeda" agora.
                 Moeda moeda = api.buscarCotacao(base.name());
+
+                //passamos o objeto moeda, o destino("ARS") e o valor, assim fazendo a conversão
                 double convertido = conversor.converter(moeda, destino, valor);
                 System.out.printf("Valor %.2f [%s] corresponde a %.2f [%s]%n", valor, base, convertido, destino);
             } catch (Exception e){
