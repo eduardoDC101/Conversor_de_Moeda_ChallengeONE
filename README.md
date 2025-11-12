@@ -55,7 +55,11 @@ Com a nova funcionalidade de **Histórico de Conversões**, o usuário pode cons
 
 ## Exemplo de Uso
 
-<img width="500" height="400" alt="exemplo" src="https://github.com/user-attachments/assets/e6f44729-33aa-48fc-b50e-2717df255726" />
+<img width="433" height="395" alt="img1" src="https://github.com/user-attachments/assets/006dd32e-78ec-46f9-90b1-f1c00b808e56" />
+<img width="612" height="401" alt="img2" src="https://github.com/user-attachments/assets/b7cb2ac3-3525-48cd-9508-47f8fcb8d996" />
+
+
+
 
 ### Observações: 
 O código possui diversas anotações, coloquei isso com o intuito de facilitar a compreensão e a localização.
