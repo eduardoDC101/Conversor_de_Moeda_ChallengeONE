@@ -1,11 +1,15 @@
 package br.com.conversorDeMoedas.principal;
 
+import br.com.conversorDeMoedas.modelos.Conversao;
 import br.com.conversorDeMoedas.modelos.Menu;
 import br.com.conversorDeMoedas.modelos.Moeda;
 import br.com.conversorDeMoedas.modelos.TipoMoeda;
 import br.com.conversorDeMoedas.servicos.ApiCliente;
 import br.com.conversorDeMoedas.servicos.Conversor;
+import br.com.conversorDeMoedas.servicos.DataTempo;
+import br.com.conversorDeMoedas.servicos.Historico;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Principal {
@@ -14,16 +18,23 @@ public class Principal {
         Menu menu = new Menu();
         ApiCliente api = new ApiCliente();
         Conversor conversor = new Conversor();
+        Historico historico = new Historico();
+        DataTempo dataTempo = new DataTempo();
 
         int opcao = 0;
 
-        while (opcao != 7){
+        while (opcao != 8){
             System.out.println(menu.mostrarMenu());
             opcao = ler.nextInt();
 
-            if (opcao == 7){
+            if (opcao == 8){
                 System.out.println("Sistema Encerrado!");
                 break;
+            }
+
+            if (opcao == 7){
+                historico.mostrarHistorico();
+                continue;
             }
 
             System.out.println("Digite o valor a ser convertido: ");
@@ -58,6 +69,12 @@ public class Principal {
                 //passamos o objeto moeda, o destino("ARS") e o valor, assim fazendo a conversão
                 double convertido = conversor.converter(moeda, destino, valor);
                 System.out.printf("Valor %.2f [%s] corresponde a %.2f [%s]%n", valor, base, convertido, destino);
+
+
+                String agora = dataTempo.capturaData();
+                Conversao c = new Conversao(valor, convertido, base.name(), destino.name(), agora);
+                historico.adicionar(c);
+
             } catch (Exception e){
                 System.out.println("ERRO: " + e.getMessage());
             }

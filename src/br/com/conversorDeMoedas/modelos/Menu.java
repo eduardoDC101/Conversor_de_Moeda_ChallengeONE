@@ -1,6 +1,10 @@
 package br.com.conversorDeMoedas.modelos;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Menu {
+
     public String mostrarMenu(){
         return """
             *************************************************
@@ -12,7 +16,8 @@ public class Menu {
             4- Real Brasileiro -> Dólar
             5- Dólar -> Peso Colombiano
             6- Peso Colombiano -> Dólar
-            7- Sair
+            7- Histórico de Logs e Conversões
+            8- Sair
             
             *************************************************
             Escolha uma opção válida: """;
